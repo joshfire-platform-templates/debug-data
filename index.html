@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css" />
+		<title>Data debug theme</title>
+
+		<script data-joshfire-bootstrap>
+
+			(function() {
+
+			var Joshfire = window.Joshfire || {};
+			
+			if (!Joshfire.config) Joshfire.config = {};
+
+			Joshfire.config.datasources = {
+				"main":{
+					'collection':'youtube.video',
+					'name':'TEDxParis videos',
+					'config':{'search':'tedxparis'} //from platform admin
+				},
+				"test2":{
+					'collection':'feed.rss',
+					'name':'TEDxParis rss',
+					'config':{'url':'http://tedxparis.com/feed/'} //from platform admin
+				}
+			};
+
+			Joshfire.config.plugins = {};
+
+			Joshfire.config.theme = {
+				'config':{'color1':'#FFFFF'}, //from platform admin
+				'id':'helloworld', //from package.json
+				'version':'0.1.1'
+			}
+			Joshfire.config.app = {
+				id:'myapp',
+				splash:'whatever.png'
+			}
+
+			var reqwest = function() {}; //embedded lib
+
+			//Data client interface
+			Joshfire.getDataSource = function(datasourceId) {
+				return {
+					find:function(query,callback) {
+						callback(null,"data");
+					}
+				}
+			};
+
+			window.Joshfire = Joshfire;
+			})();
+
+		</script>
+	</head>
+	<body>
+		
+		Select a datasource : <select onchange="datarefresh()" id="datalist"></select>
+
+		<div id="datacontent">
+
+		</div>
+
+
+		<script>
+			function datarefresh() {
+				var key = document.getElementById("datalist").options[document.getElementById("datalist").selectedIndex].value;
+				
+				var ds = Joshfire.config.datasources[key];
+				var col = Joshfire.getDataSource(key);
+
+				col.find({},function(err,data) {
+					document.getElementById("datacontent").innerHTML = JSON.stringify(data);
+				});
+			}
+
+			// Load all the datasources in the select
+			for (key in Joshfire.config.datasources) {
+				var ds = Joshfire.config.datasources[key];
+				document.getElementById("datalist").innerHTML+="<option value='"+key+"'>"+ds.name+"</option>";
+			}
+
+
+			datarefresh();
+		</script>
+
+
+	</body>
+</html>
