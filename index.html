@@ -62,10 +62,11 @@
 
 
 		<script>
+		
 			function datarefresh() {
 				var key = document.getElementById("datalist").options[document.getElementById("datalist").selectedIndex].value;
 				
-				var ds = Joshfire.config.datasources[key];
+				var ds = Joshfire.config.appdatasources[key];
 				var col = Joshfire.getDataSource(key);
 
 				col.find({},function(err,data) {
@@ -74,8 +75,8 @@
 			}
 
 			// Load all the datasources in the select
-			for (key in Joshfire.config.datasources) {
-				var ds = Joshfire.config.datasources[key];
+			for (key in Joshfire.config.appdatasources) {
+				var ds = Joshfire.config.appdatasources[key];
 				document.getElementById("datalist").innerHTML+="<option value='"+key+"'>"+ds.name+"</option>";
 			}
 
