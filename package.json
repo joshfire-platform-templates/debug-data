@@ -9,17 +9,7 @@
 	"joshfire":{
 		"startfile":"index.html",
 		"screenshot":"screen.png",
-		"devices":{
-			"phone/ios/webkit >4":{
-				"startfile":"ios/index.html",
-				"datasources":{
-					"main":{
-					}
-				}
-			},
-			"phone/android/webkit":{},
-			"desktop/a-grade":{}
-		},
+		"startfile":"index.html",
 		"datasources":{
 			"main":{
 				"title":"Main data source",
