@@ -76,10 +76,8 @@
 
 			// Load all the datasources in the select
 			for (key in Joshfire.config.appdatasources) {
-				var ds = Joshfire.config.appdatasources[key];
-				document.getElementById("datalist").innerHTML+="<option value='"+key+"'>"+ds.name+"</option>";
+				document.getElementById("datalist").innerHTML+="<option value='"+key+"'>"+key+"</option>";
 			}
-
 
 			datarefresh();
 		</script>
