@@ -5,13 +5,6 @@
 	"description":"This is a simple theme to debug your data sources",
 	"graphic_small":"http://i.imgur.com/LJI5A.png",
 	"graphic_big":"http://i.imgur.com/x5NbC.png",
-	"previews":{
-		"mobile":"",
-		"tablet":"",
-		"desktop":"",
-		"tv":"",
-		"objects":""
-	},
 	"keywords": [
        "debug" 
    ],
