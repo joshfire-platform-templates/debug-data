@@ -3,14 +3,14 @@
 	"version":"0.0.1",
 	"fullName":"Data debugger",
 	"description":"This is a simple theme to debug your data sources",
-	"graphic_small":"http://i.imgur.com/LJI5A.png",
-	"graphic_big":"http://i.imgur.com/x5NbC.png",
 	"keywords": [
        "debug" 
    ],
 	"joshfire":{
-		"startfile":"index.html",
-		"screenshot":"screen.png",
+		"graphics":{
+ 	    "small":"http://i.imgur.com/LJI5A.png",
+ 	    "big":"http://i.imgur.com/x5NbC.png"
+ 	  },
 		"startfile":"index.html",
 		"datasources":{
 			"main":{
