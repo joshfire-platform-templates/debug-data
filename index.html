@@ -66,16 +66,20 @@
 			function datarefresh() {
 				var key = document.getElementById("datalist").options[document.getElementById("datalist").selectedIndex].value;
 				
-				var ds = Joshfire.config.appdatasources[key];
-				var col = Joshfire.getDataSource(key);
+				var ds;
+				if(key == 'main') {
+					ds = Joshfire.config.datasources[key][0];
+				} else {
+					ds = Joshfire.config.datasources[key];
+				}
 
-				col.find({},function(err,data) {
+				ds.find({},function(err,data) {
 					document.getElementById("datacontent").innerHTML = JSON.stringify(data);
 				});
 			}
 
 			// Load all the datasources in the select
-			for (key in Joshfire.config.appdatasources) {
+			for (key in Joshfire.config.datasources) {
 				document.getElementById("datalist").innerHTML+="<option value='"+key+"'>"+key+"</option>";
 			}
 
