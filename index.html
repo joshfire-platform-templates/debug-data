@@ -3,54 +3,7 @@
 		<link rel="stylesheet" href="style.css" />
 		<title>Data debug theme</title>
 
-		<script data-joshfire-bootstrap>
-
-			(function() {
-
-			var Joshfire = window.Joshfire || {};
-			
-			if (!Joshfire.config) Joshfire.config = {};
-
-			Joshfire.config.datasources = {
-				"main":{
-					'collection':'youtube.video',
-					'name':'TEDxParis videos',
-					'config':{'search':'tedxparis'} //from platform admin
-				},
-				"test2":{
-					'collection':'feed.rss',
-					'name':'TEDxParis rss',
-					'config':{'url':'http://tedxparis.com/feed/'} //from platform admin
-				}
-			};
-
-			Joshfire.config.plugins = {};
-
-			Joshfire.config.theme = {
-				'config':{'color1':'#FFFFF'}, //from platform admin
-				'id':'helloworld', //from package.json
-				'version':'0.1.1'
-			}
-			Joshfire.config.app = {
-				id:'myapp',
-				splash:'whatever.png'
-			}
-
-			var reqwest = function() {}; //embedded lib
-
-			//Data client interface
-			Joshfire.getDataSource = function(datasourceId) {
-				return {
-					find:function(query,callback) {
-						callback(null,"data");
-					}
-				}
-			};
-
-			window.Joshfire = Joshfire;
-			})();
-
-		</script>
+		<script data-joshfire-bootstrap src="http://127.0.0.1:40021/bootstrap/4ec69b8666bdc40000000756/auto/phone/" ></script>
 	</head>
 	<body>
 		
@@ -67,7 +20,7 @@
 				var key = document.getElementById("datalist").options[document.getElementById("datalist").selectedIndex].value;
 				
 				var ds;
-				if(key == 'main') {
+				if( toString.call(Joshfire.config.datasources[key]) == '[object Array]') {
 					ds = Joshfire.config.datasources[key][0];
 				} else {
 					ds = Joshfire.config.datasources[key];
