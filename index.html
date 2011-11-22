@@ -3,7 +3,7 @@
 		<link rel="stylesheet" href="style.css" />
 		<title>Data debug theme</title>
 
-		<script data-joshfire-bootstrap src="http://127.0.0.1:40021/bootstrap/4ec69b8666bdc40000000756/auto/phone/" ></script>
+		<script data-joshfire-bootstrap src="http://127.0.0.1:40021/bootstrap/4eca9a4157f7b0f3810000ee/auto/phone/" ></script>
 	</head>
 	<body>
 		
@@ -20,10 +20,10 @@
 				var key = document.getElementById("datalist").options[document.getElementById("datalist").selectedIndex].value;
 				
 				var ds;
-				if( toString.call(Joshfire.config.datasources[key]) == '[object Array]') {
-					ds = Joshfire.config.datasources[key][0];
+				if( toString.call(Joshfire.factory.config.datasources[key]) == '[object Array]') {
+					ds = Joshfire.factory.config.datasources[key][0];
 				} else {
-					ds = Joshfire.config.datasources[key];
+					ds = Joshfire.factory.config.datasources[key];
 				}
 
 				ds.find({},function(err,data) {
@@ -32,7 +32,7 @@
 			}
 
 			// Load all the datasources in the select
-			for (key in Joshfire.config.datasources) {
+			for (key in Joshfire.factory.config.datasources) {
 				document.getElementById("datalist").innerHTML+="<option value='"+key+"'>"+key+"</option>";
 			}
 
