@@ -1,44 +1,48 @@
 <html>
-	<head>
-		<link rel="stylesheet" href="style.css" />
-		<title>Data debug theme</title>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <title>Datasource debugger</title>
+    <script data-joshfire-bootstrap src="http://127.0.0.1:40021/bootstrap/4ffd3201cdbcc200000001e6/4f202885adcbd301000000fc/phone/" ></script>
+  </head>
+  <body>
+    <h1>Datasource debugger</h1>
+    <p>Choose a datasource to visualize:</p>
+    <select onchange="datarefresh()" id="datalist"></select>
 
-		<script data-joshfire-bootstrap src="http://127.0.0.1:40021/bootstrap/4eca9a4157f7b0f3810000ee/auto/phone/" ></script>
-	</head>
-	<body>
-		
-		Select a datasource : <select onchange="datarefresh()" id="datalist"></select>
+    <pre id="datacontent"></pre>
 
-		<div id="datacontent">
+    <script type="text/javascript">
+      var selectElement = document.getElementById('datalist');
+      var datacontent = document.getElementById('datacontent');
+      var datasources = Joshfire.factory.getDataSource('main');
 
-		</div>
+      function datarefresh() {
+        var idx = selectElement.options[selectElement.selectedIndex].value;
+        var datasource = datasources.children ?
+          datasources.children[idx] :
+          datasources;
+        datasource.find({}, function (err, data) {
+          if (err) datacontent.innerHTML = err;
+          else datacontent.innerHTML = JSON.stringify(data, null, 2);
+        });
+      }
 
+      // Initialize the select field with all datasources
+      if (datasources.children) {
+        for (var i = 0; i < datasources.children.length; i++) {
+          selectElement.innerHTML += '<option value="' + i + '"' +
+            (i === 0 ? ' selected' : '') + '>' +
+            datasources.children[i].name +
+            '</option>';
+        }
+      }
+      else {
+        selectElement.innerHTML += '<option value="0">' +
+          datasources.name +
+          '</option>';
+      }
 
-		<script>
-		
-			function datarefresh() {
-				var key = document.getElementById("datalist").options[document.getElementById("datalist").selectedIndex].value;
-				
-				var ds;
-				if( toString.call(Joshfire.factory.config.datasources[key]) == '[object Array]') {
-					ds = Joshfire.factory.config.datasources[key][0];
-				} else {
-					ds = Joshfire.factory.config.datasources[key];
-				}
-
-				ds.find({},function(err,data) {
-					document.getElementById("datacontent").innerHTML = JSON.stringify(data);
-				});
-			}
-
-			// Load all the datasources in the select
-			for (key in Joshfire.factory.config.datasources) {
-				document.getElementById("datalist").innerHTML+="<option value='"+key+"'>"+key+"</option>";
-			}
-
-			datarefresh();
-		</script>
-
-
-	</body>
+      datarefresh();
+    </script>
+  </body>
 </html>

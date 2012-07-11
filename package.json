@@ -1,33 +1,24 @@
 {
-	"name":"debug-data",
-	"version":"0.0.1",
-	"fullName":"Data debugger",
-	"description":"This is a simple theme to debug your data sources",
-	"keywords": [
-       "debug" 
+  "name": "debug-data",
+  "fullName": "Datasource debugger",
+  "version": "0.1.0",
+  "description": "Basic debug template that renders the actual JSON response that templates receive from datasources. This template is typically useful to debug datasources",
+  "keywords": [
+    "debug",
+    "datasource"
    ],
-	"joshfire":{
-	  	"devonly": true,        
-		"images":{
-	 	    "small":"http://i.imgur.com/LJI5A.png",
-	 	    "big":"http://i.imgur.com/x5NbC.png"
-	 	  },
-		"startfile":"index.html",
-		"datasources":{
-			"main":{
-				"title":"Main data source",
-				"description":"Most themes use a primary datasource",
-				"multiple":true
-			},
-			"news":{
-				"title":"News"
-			},
-			"third":{
-				"title":"Third data source"
-			}
-		},
-		"options":{
-			
-		}
-	}
+  "joshfire": {
+    "devonly": true,
+    "images": {
+      "small": "http://i.imgur.com/LJI5A.png",
+      "big": "http://i.imgur.com/x5NbC.png"
+    },
+    "startfile": "index.html",
+    "datasources": {
+      "main": {
+        "title": "Datasources to visualize",
+        "multiple": true
+      }
+    }
+  }
 }
